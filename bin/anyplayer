@@ -3,7 +3,7 @@
 require 'anyplayer'
 
 # Create a selector
-selector = Anyplayer::Selector.new
+selector = Anyplayer::VoterSelector.new
 if ARGV.first == "-v"
   selector.verbose = true
   ARGV.pop

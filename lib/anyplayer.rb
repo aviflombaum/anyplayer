@@ -1,6 +1,7 @@
 require "timeout"
 
 module Anyplayer
+  # List and order of the players to try
   PLAYERS = %w(
     rhythmbox
     mpd
@@ -19,5 +20,7 @@ end
 
 require "anyplayer/player"
 require "anyplayer/selector"
+require "anyplayer/voter"
+require "anyplayer/voter_selector"
 
 

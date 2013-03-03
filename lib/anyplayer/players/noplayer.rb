@@ -1,3 +1,4 @@
+# A Fake player for tests
 class Anyplayer::Noplayer < Anyplayer::Player
   def playpause
   end
@@ -9,11 +10,9 @@ class Anyplayer::Noplayer < Anyplayer::Player
   end
 
   def prev
-    super
   end
 
   def next
-    super
   end
 
   def voldown
