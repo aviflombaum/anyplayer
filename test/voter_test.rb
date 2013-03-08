@@ -10,7 +10,7 @@ class VoterTest < MiniTest::Unit::TestCase
 
   def setup
     @player = FakePlayer.new
-    @player.extend Anyplayer::Voter
+    @player.extend Voter
   end
 
   def test_initialize
@@ -18,7 +18,7 @@ class VoterTest < MiniTest::Unit::TestCase
   end
 
   def test_vote_and_votes
-    votes = Anyplayer::Voter::DEFAULT_VOTES_TO_SKIP
+    votes = Voter::DEFAULT_VOTES_TO_SKIP
     votes.times do |i|
       @player.vote
 
@@ -33,7 +33,7 @@ class VoterTest < MiniTest::Unit::TestCase
 
   def test_voting_changes_track
     flexmock(@player).should_receive(:next).once
-    Anyplayer::Voter::DEFAULT_VOTES_TO_SKIP.times { @player.vote }
+    Voter::DEFAULT_VOTES_TO_SKIP.times { @player.vote }
   end
 
   def test_vote_resets

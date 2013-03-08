@@ -26,7 +26,7 @@ USAGE
     end
   end
 
-  def test_artist
+  def test_artist_name
     assert_bin_anyplayer(argv: %w(artist), output: "The Drums\n")
   end
 

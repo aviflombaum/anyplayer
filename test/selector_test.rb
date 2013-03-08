@@ -1,7 +1,7 @@
 require "test_helper"
 
 class AnyplayerTest < MiniTest::Unit::TestCase
-  def test_player
+  def test_selector_player
     selector = Selector.new
     player = selector.player
     assert_kind_of Player, player
