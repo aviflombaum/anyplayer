@@ -16,6 +16,7 @@ module Anyplayer
   end
 end
 
+require "anyplayer/version"
 require "anyplayer/player"
 require "anyplayer/selector"
 require "anyplayer/voter"

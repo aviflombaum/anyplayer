@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AnyplayerTest < MiniTest::Unit::TestCase
+class SelectorTest < MiniTest::Unit::TestCase
   include FlexMock::TestCase
 
   def test_selector_player

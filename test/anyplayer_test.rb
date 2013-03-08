@@ -8,9 +8,9 @@ class AnyplayerTest < MiniTest::Unit::TestCase
     end
   end
 
-  # def test_loading_all_players
-  #   Anyplayer::PLAYERS.each do |player|
-  #     require "anyplayer/players/#{player}"
-  #   end
-  # end
+  def test_requiring_all_players
+    Anyplayer::PLAYERS.each do |player|
+      require "anyplayer/players/#{player}"
+    end
+  end
 end
