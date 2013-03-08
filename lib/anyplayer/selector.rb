@@ -1,14 +1,19 @@
-# The Selector is the tool that will find you the currently running player on your platform
+require "timeout"
+
+# The Selector lets you find the currently running player on your platform
 #
 # Example:
 #
 #   selector = Anyplayer::Selector.new
 #   player = selector.player
 #
-# Needs the PLAYERS constant to contain a list of players.
+# Needs the PLAYERS constant containing the list of players to load.
+
 class Anyplayer::Selector
   attr_accessor :verbose
   attr_reader :errors
+
+  TIMEOUT_SECONDS = 5
 
   def initialize
     @verbose = false
@@ -55,11 +60,10 @@ class Anyplayer::Selector
     def player_launched(player)
       $stderr.puts "#{player.name} launched?" if verbose
 
-      seconds = 5
       begin
-        Timeout::timeout(seconds) { player.launched? }
+        Timeout::timeout(TIMEOUT_SECONDS) { player.launched? }
       rescue Timeout::Error
-        $stderr.puts "Timed out after #{seconds} seconds" if verbose
+        $stderr.puts "Timed out after #{TIMEOUT_SECONDS} seconds" if verbose
         false
       end
     end

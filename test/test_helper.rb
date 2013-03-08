@@ -1,6 +1,7 @@
 # Test libraries
 require "minitest/unit"
 require "minitest/autorun"
+require "minitest/stub_const"
 require "flexmock/test_unit"
 
 # Anyplayer with the testing noplayer first

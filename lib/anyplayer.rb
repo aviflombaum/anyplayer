@@ -1,5 +1,3 @@
-require "timeout"
-
 module Anyplayer
   # List and order of the players to try
   PLAYERS = %w(

@@ -20,6 +20,7 @@
 #   name      (return string)
 
 class Anyplayer::Player
+
   # Tells the player to toggle the pause state
   def playpause
     paused? ? play : pause
