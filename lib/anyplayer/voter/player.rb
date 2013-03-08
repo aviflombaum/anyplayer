@@ -1,11 +1,9 @@
 # Voting extension that lets all players be vote-able.
 # After DEFAULT_VOTES_TO_SKIP times, the song changes.
 
-module Anyplayer::Voter
-  DEFAULT_VOTES_TO_SKIP = 5
-
+module Anyplayer::Voter::Player
   # Vote to skip this song
-  def vote(votes_to_skip = DEFAULT_VOTES_TO_SKIP)
+  def vote(votes_to_skip = Anyplayer::Voter::DEFAULT_VOTES_TO_SKIP)
     @votes ||= 0
     @votes += 1
     if @votes >= votes_to_skip

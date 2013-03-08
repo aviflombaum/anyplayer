@@ -1,10 +1,18 @@
 require "test_helper"
 
-class AnyplayerTest < MiniTest::Unit::TestCase
+class FakeVoterSelector
+  prepend Anyplayer::Voter::Selector
+
+  def player
+    Noplayer.new
+  end
+end
+
+class VoterSelectorTest < MiniTest::Unit::TestCase
   def test_player
-    selector = VoterSelector.new
+    selector = FakeVoterSelector.new
     player = selector.player
     assert_kind_of Player, player
-    assert player.respond_to?(:vote)
+    assert player.respond_to?(:vote), "player should have vote method"
   end
 end

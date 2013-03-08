@@ -19,7 +19,7 @@ end
 require "anyplayer/version"
 require "anyplayer/player"
 require "anyplayer/selector"
-require "anyplayer/voter"
-require "anyplayer/voter_selector"
 
-
+require "anyplayer/voter/voter"
+require "anyplayer/cacher/selector"
+require "anyplayer/base_selector"

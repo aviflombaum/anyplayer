@@ -10,10 +10,11 @@ require "timeout"
 # Needs the PLAYERS constant containing the list of players to load.
 
 class Anyplayer::Selector
+  TIMEOUT_SECONDS = 5
+
   attr_accessor :verbose
   attr_reader :errors
-
-  TIMEOUT_SECONDS = 5
+  include Enumerable
 
   def initialize
     @verbose = false
@@ -22,16 +23,28 @@ class Anyplayer::Selector
 
   # Returns an instance of the first music player that's launched
   def player
-    players_for_this_platform.each { |player|
-      player_load(player) or next
-      instance = player_class(player).new
-      return instance if player_launched(instance)
-    }
-    nil
+    first
   end
 
-
   private
+
+    def each
+      each_instance do |instance|
+        yield instance if instance_launched?(instance)
+      end
+    end
+
+    def each_instance
+      each_loaded_player do |player|
+        yield player_class(player).new
+      end
+    end
+
+    def each_loaded_player
+      players_for_this_platform.each do |player|
+        yield player if player_load(player)
+      end
+    end
 
     def players_for_this_platform
       players = Anyplayer::PLAYERS
@@ -57,7 +70,7 @@ class Anyplayer::Selector
       Anyplayer::const_get(camelized)
     end
 
-    def player_launched(player)
+    def instance_launched?(player)
       $stderr.puts "#{player.name} launched?" if verbose
 
       begin

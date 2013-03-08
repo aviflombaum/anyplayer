@@ -1,11 +1,13 @@
 require "test_helper"
 
 class FakePlayer < Player
+  prepend Voter::Player
+
   def next; end
   def prev; end
 end
 
-class VoterTest < MiniTest::Unit::TestCase
+class VoterPlayerTest < MiniTest::Unit::TestCase
   include FlexMock::TestCase
 
   def setup
