@@ -7,14 +7,16 @@ class Anyplayer::SpotifyMac < Anyplayer::Player
     app 'play'
   end
 
+  def pause
+    app 'pause'
+  end
+
   def prev
     app 'previous track'
-    super
   end
 
   def next
     app 'next track'
-    super
   end
 
   def voldown
