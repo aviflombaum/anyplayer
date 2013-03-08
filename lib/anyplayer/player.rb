@@ -12,22 +12,33 @@
 #   voldown
 #   volup
 #   volume    (return int)
-#   playing?  (return bool)
-#   paused?   (return bool)
 #
 # Optionnaly you can also override:
 #   playpause
+#   playing?  (return bool)
+#   paused?   (return bool)
+#   name      (return string)
+
 class Anyplayer::Player
-  # Player name defaults to the classe's, feel free to override it
+  # Tells the player to toggle the pause state
+  def playpause
+    paused? ? play : pause
+  end
+
+  def playing?
+    track != ""
+  end
+
+  def paused?
+    !playing?
+  end
+
+  # Player name defaults to the class name
   # Example:
   #     player.name # => Rhythmbox
   def name
     self.class.to_s.gsub(/^.*::/, '')
   end
 
-  # Tells the player to toggle the pause state
-  def playpause
-    paused? ? play : pause
-  end
 end
 
