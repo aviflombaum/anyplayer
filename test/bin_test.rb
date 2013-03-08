@@ -1,6 +1,8 @@
 require "test_helper"
 
 class AnyplayerTest < MiniTest::Unit::TestCase
+  include FlexMock::TestCase
+
   def test_usage
     usage = <<USAGE
 Usage: #{$0} [-v] [command]
@@ -26,11 +28,17 @@ USAGE
     end
   end
 
-  def test_artist_name
-    assert_bin_anyplayer(argv: %w(artist), output: "The Drums\n")
+  def test_no_player
+    flexmock(Noplayer).new_instances.should_receive(:launched?).returns(false)
+    assert_bin_anyplayer(argv: %w(artist), exit: 1, error_output: "Error: no player connected.\n")
+
+    assert_bin_anyplayer(argv: %w(-v artist), exit: 1,
+      error_output: "Loaded noplayer\nNoplayer launched?\nError: no player connected.\n")
   end
 
-  def test_artist_verbose
+  def test_artist_name
+    assert_bin_anyplayer(argv: %w(artist), output: "The Drums\n")
+
     assert_bin_anyplayer(argv: %w(-v artist), output: "The Drums\n",
       error_output: "Loaded noplayer\nNoplayer launched?\n")
   end
@@ -102,8 +110,8 @@ USAGE
   private
 
     def assert_bin_anyplayer(argv: nil, exit: 0, output: "", error_output: "")
-      assert_exists_with_status(exit) do
-        assert_output output, error_output do
+      assert_output output, error_output do
+        assert_exists_with_status(exit) do
           with_argv argv do
             load 'bin/anyplayer'
             yield if block_given?
