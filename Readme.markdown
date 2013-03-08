@@ -4,6 +4,8 @@ Anyplayer
 Interacts with the currently running music player. Supports iTunes OS X, iTunes Windows,
 Rythmbox, MPD & XMMS2.
 
+[![Build Status](https://travis-ci.org/sunny/anyplayer.png?branch=ruby2.0.0-rc2)](https://travis-ci.org/sunny/anyplayer)
+
 Install
 -------
 
