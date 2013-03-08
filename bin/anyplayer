@@ -6,7 +6,7 @@ require 'anyplayer'
 selector = Anyplayer::VoterSelector.new
 if ARGV.first == "-v"
   selector.verbose = true
-  ARGV.pop
+  ARGV.shift
 end
 
 # Find the current player
@@ -17,9 +17,9 @@ abort "Error: no player connected.\n" + selector.errors.join("\n") if !player
 case ARGV.first
   when "playpause" then player.playpause
   when "play"      then player.play
-  when "pause"     then palyer.pause
+  when "pause"     then player.pause
   when "next"      then player.next
-  when "prev"      then player.next
+  when "prev"      then player.prev
   when "voldown"   then player.voldown
   when "volup"     then player.volup
   when "volume"    then puts player.volume
@@ -30,7 +30,7 @@ case ARGV.first
   when "name"      then puts player.name
   when "launched"  then exit(player.launched? ? 0 : 1)
   when "playing"   then exit(player.playing? ? 0 : 1)
-  when "paused"    then exit(player.playing? ? 0 : 1)
+  when "paused"    then exit(player.paused? ? 0 : 1)
   else
     puts <<USAGE
 Usage: #{$0} [-v] [command]
