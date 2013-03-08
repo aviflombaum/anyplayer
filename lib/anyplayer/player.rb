@@ -41,5 +41,9 @@ class Anyplayer::Player
     self.class.to_s.gsub(/^.*::/, '')
   end
 
+  def to_h
+    { track: track, artist: artist, album: album }
+  end
+
 end
 

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AnyplayerTest < MiniTest::Unit::TestCase
+class BinTest < MiniTest::Unit::TestCase
   include FlexMock::TestCase
 
   def test_usage
@@ -8,7 +8,7 @@ class AnyplayerTest < MiniTest::Unit::TestCase
 Usage: #{$0} [-v] [command]
 
 Where command is one of: playpause, play, pause, next, prev, voldown, volup,
-volume, track, artist, album, vote, name, launched.
+volume, track, artist, album, name, launched.
 
 Player connected: Noplayer.
 USAGE
@@ -36,7 +36,7 @@ USAGE
       error_output: "Loaded noplayer\nNoplayer launched?\nError: no player connected.\n")
   end
 
-  def test_artist_name
+  def test_artist
     assert_bin_anyplayer(argv: %w(artist), output: "The Drums\n")
 
     assert_bin_anyplayer(argv: %w(-v artist), output: "The Drums\n",
@@ -85,10 +85,6 @@ USAGE
 
   def test_album
     assert_bin_anyplayer(argv: %w(album), output: "Money\n")
-  end
-
-  def test_vote
-    assert_bin_anyplayer(argv: %w(vote))
   end
 
   def test_name

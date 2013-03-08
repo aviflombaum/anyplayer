@@ -3,7 +3,7 @@
 require 'anyplayer'
 
 # Create a selector
-selector = Anyplayer::VoterSelector.new
+selector = Anyplayer::Selector.new
 if ARGV.first == "-v"
   selector.verbose = true
   ARGV.shift
@@ -26,7 +26,6 @@ case ARGV.first
   when "track"     then puts player.track
   when "artist"    then puts player.artist
   when "album"     then puts player.album
-  when "vote"      then player.vote
   when "name"      then puts player.name
   when "launched"  then exit(1) if !player.launched?
   when "playing"   then exit(1) if !player.playing?
@@ -36,7 +35,7 @@ case ARGV.first
 Usage: #{$0} [-v] [command]
 
 Where command is one of: playpause, play, pause, next, prev, voldown, volup,
-volume, track, artist, album, vote, name, launched.
+volume, track, artist, album, name, launched.
 
 Player connected: #{player.name}.
 USAGE

@@ -41,4 +41,9 @@ class PlayerTest < MiniTest::Unit::TestCase
     flexmock(player).should_receive(:playing?).and_return(false)
     assert player.paused?
   end
+
+  def test_to_h
+    player = Noplayer.new
+    assert_equal player.to_h, ({ track: "Money", artist: "The Drums", album: "Money" })
+  end
 end
