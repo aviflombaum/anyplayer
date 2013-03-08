@@ -1,3 +1,4 @@
+# A Selector that returns vote-able players
 class Anyplayer::VoterSelector < Anyplayer::Selector
   def player
     player = super

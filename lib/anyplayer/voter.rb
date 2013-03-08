@@ -1,4 +1,6 @@
-# Voting module that lets a player be vote-able
+# Voting extension that lets all players be vote-able.
+# After DEFAULT_VOTES_TO_SKIP times, the song changes.
+
 module Anyplayer::Voter
   DEFAULT_VOTES_TO_SKIP = 5
 
